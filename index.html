@@ -6,38 +6,528 @@
 <title>奇偉 &amp; 晉瑋 婚禮出席回覆</title>
 <meta name="description" content="2027.03.28 臺中勤美洲際酒店｜誠摯邀請您蒞臨，敬請點擊連結回覆出席意願">
 
-<!-- 分享預覽（LINE / Facebook） -->
+<!-- ====== 分享預覽（LINE / Facebook）：把「你的帳號」換成 GitHub 帳號名稱 ====== -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="奇偉 &amp; 晉瑋 婚禮出席回覆">
 <meta property="og:description" content="2027.03.28 臺中勤美洲際酒店｜誠摯邀請您蒞臨，敬請點擊連結回覆出席意願">
-<meta property="og:image" content="https://peterpeter331017.github.io/wedding/preview.jpg?v=2">
+<meta property="og:image" content="https://你的帳號.github.io/wedding/preview.jpg?v=3">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&family=Noto+Serif+TC:wght@400;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:wght@400;500&family=Noto+Serif+TC:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
-       background:#F8F5EE;color:#463D35;font-family:'Noto Serif TC',serif;text-align:center;padding:24px;box-sizing:border-box}
-  .eyebrow{font-family:'Playfair Display',serif;font-style:italic;color:#8E7347;font-size:22px}
-  h1{font-weight:600;font-size:36px;letter-spacing:.12em;margin:6px 0 18px}
-  p{font-size:18px;color:#7D7368;margin:0 0 26px}
-  a{display:inline-block;padding:16px 40px;border-radius:999px;background:#B3976A;color:#fff;
-    text-decoration:none;font-size:20px;letter-spacing:.1em}
+  :root{
+    --bg:#F8F5EE;
+    --ink:#463D35;
+    --muted:#7D7368;
+    --gold:#B3976A;
+    --gold-deep:#8E7347;
+    --gold-line:#D3BF9A;
+    --box:#FBFAF7;
+    --box-line:#DDD6CB;
+    --error:#A8432F;
+    --card:#F9F9F8;
+    --field:#EFEBE4;
+    --line:#DDD6CB;
+    --en:'Playfair Display','Noto Serif TC',serif;
+    --num:'Playfair Display','Source Serif 4',serif;
+    --zh:'Noto Serif TC','PMingLiU',serif;
+    --pf:'Playfair Display','Noto Serif TC',serif;
+    --cg:'Cormorant Garamond','Playfair Display',serif;
+    --script:'Parisienne','Snell Roundhand',cursive;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:var(--zh);font-size:18px;line-height:1.7;color:var(--ink);
+    background:var(--bg);
+    min-height:100vh;overflow-x:hidden;
+  }
+  .wrap{max-width:560px;margin:0 auto;padding:0 22px 72px;overflow:hidden}
+  @supports (overflow:clip){.wrap{overflow:visible;overflow-x:clip}}
+
+  /* ---------- Script watermark ---------- */
+  .wm{position:relative}
+  .wm::before{
+    content:"Wei & Wei";position:absolute;left:50%;top:var(--wm-top,55%);z-index:0;pointer-events:none;
+    transform:translate(-50%,-50%) rotate(-9deg);
+    font-family:var(--script);font-weight:400;font-size:min(19vw,106px);line-height:1;white-space:nowrap;word-spacing:.08em;
+    color:rgba(179,151,106,.2);
+  }
+  .wm > *{position:relative;z-index:1}
+
+  /* ---------- Hero ---------- */
+  .hero{text-align:center;padding:64px 0 46px}
+  .names{font-weight:600;font-size:clamp(40px,10.5vw,56px);line-height:1.25;letter-spacing:.14em;padding-left:.14em}
+  .names .amp{font-family:var(--cg);font-weight:400;color:var(--gold-deep);letter-spacing:0;padding:0 .3em 0 .08em;font-size:.85em}
+  .eyebrow{margin-top:14px;font-family:var(--cg);font-size:14px;letter-spacing:.62em;padding-left:.62em;color:var(--muted);text-transform:uppercase}
+
+  .photo{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;box-shadow:0 18px 40px -28px rgba(90,70,40,.5)}
+
+  /* ---------- Forever ---------- */
+  .forever{display:grid;grid-template-columns:1fr 1.05fr;gap:18px;align-items:center;margin-top:40px}
+  .forever h2{font-family:var(--pf);font-style:italic;font-weight:400;font-size:clamp(25px,6.8vw,34px);line-height:1.2;color:var(--gold-deep);white-space:nowrap}
+  .forever h2 span{display:block;padding-left:.7em}
+  .forever .rule{width:32px;height:1px;background:var(--gold);margin:18px 0 16px}
+  .forever p{font-size:clamp(15px,4vw,17px);letter-spacing:.22em;line-height:2.25;color:var(--muted)}
+  .forever img{width:100%;aspect-ratio:7/5;object-fit:cover;display:block;box-shadow:0 14px 30px -18px rgba(90,70,40,.55)}
+
+  /* ---------- Details card (arch frame) ---------- */
+  .details{
+    position:relative;max-width:560px;margin:40px auto 0;
+    padding:clamp(54px,13vw,72px) clamp(22px,6vw,48px) 34px;
+    text-align:center;
+    background:linear-gradient(180deg,#FCFAF5 0%,#F6EFE2 100%);
+    border:1px solid var(--gold-line);
+    border-radius:300px 300px 8px 8px;
+    box-shadow:0 22px 44px -30px rgba(120,95,55,.45);
+  }
+  .details::before{
+    content:"";position:absolute;inset:9px;pointer-events:none;
+    border:1px solid var(--gold-line);
+    border-radius:292px 292px 4px 4px;
+  }
+  .kicker{font-family:var(--num);font-size:14px;letter-spacing:.42em;color:var(--gold-deep);text-transform:uppercase;padding-left:.42em}
+
+  .date-big{
+    margin-top:14px;font-family:var(--num);font-weight:400;
+    font-size:clamp(44px,12vw,62px);line-height:1.05;letter-spacing:0;color:var(--ink);
+    white-space:nowrap;
+  }
+  .date-big .dot{color:var(--gold);font-weight:400;padding:0 .12em;position:relative;top:-.06em}
+  .weekday{margin-top:6px;font-size:clamp(20px,5vw,24px);letter-spacing:.5em;padding-left:.5em}
+
+  .times{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;margin-top:22px}
+  .times .vr{width:1px;height:54px;background:var(--gold-line)}
+  .times .lbl{font-size:17px;color:var(--gold-deep);letter-spacing:.4em;padding-left:.4em}
+  .times .val{font-family:var(--num);font-weight:500;font-size:clamp(32px,8vw,38px);line-height:1.2}
+
+  .divider{display:flex;align-items:center;gap:14px;margin:28px auto;max-width:300px;color:var(--gold)}
+  .divider::before,.divider::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold-line))}
+  .divider::after{background:linear-gradient(90deg,var(--gold-line),transparent)}
+  .divider span{font-size:14px;line-height:1}
+
+  .venue-name{font-weight:600;font-size:clamp(21px,5.2vw,25px);line-height:1.5;letter-spacing:.04em}
+  .venue-addr{font-size:17px;color:var(--muted);margin-top:4px;letter-spacing:.04em}
+
+  .parents{display:grid;grid-template-columns:1fr auto 1fr;align-items:start}
+  .parents .vr{width:1px;align-self:stretch;background:var(--gold-line)}
+  .parents .role{font-size:17px;color:var(--gold-deep);letter-spacing:.3em;padding-left:.3em}
+  .parents .ppl{font-size:clamp(20px,5vw,23px);margin-top:6px;line-height:1.85;letter-spacing:.08em}
+  .regards{margin-top:22px;font-size:22px;letter-spacing:.5em;padding-left:.5em}
+
+  /* ---------- RSVP ---------- */
+  .rsvp-head{text-align:center;margin-top:64px;padding:34px 0 20px;--wm-top:52%}
+  .rsvp-title{display:flex;align-items:center;justify-content:center;gap:16px}
+  .rsvp-title::before,.rsvp-title::after{content:"";width:clamp(44px,18vw,84px);height:1px;background:var(--gold-line)}
+  .rsvp-title h2{font-family:var(--pf);font-weight:400;font-size:clamp(36px,9.6vw,46px);letter-spacing:.42em;padding-left:.42em;line-height:1.1}
+  .rsvp-head p{margin-top:12px;font-size:clamp(16px,4.3vw,19px);letter-spacing:.26em;padding-left:.26em}
+  .rsvp-head .due{font-size:15px;color:var(--muted);letter-spacing:.1em;margin-top:4px}
+
+  form{margin-top:56px}
+  .field{margin-bottom:54px}
+  .label{display:block;font-size:clamp(19px,4.6vw,22px)}
+  .help{font-size:16px;color:var(--muted);margin-top:4px}
+  .ctrl{margin-top:14px}
+  .req{margin-left:2px}
+
+  .line-input{
+    width:100%;font:inherit;font-size:20px;color:var(--ink);
+    background:transparent;border:none;border-bottom:1.5px solid var(--line);
+    padding:8px 4px 10px;border-radius:0;
+  }
+  .line-input::placeholder,textarea::placeholder{color:#9A9086}
+  .line-input:focus{outline:none;border-bottom-color:var(--gold)}
+  textarea{
+    width:100%;min-height:150px;font:inherit;font-size:19px;color:var(--ink);
+    background:var(--field);border:1.5px solid transparent;border-radius:2px;
+    padding:14px 18px;resize:vertical;line-height:1.6;
+  }
+  textarea.short{min-height:90px}
+  textarea:focus{outline:none;border-color:var(--gold)}
+
+  .choices{display:grid;gap:12px}
+  .choice{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    width:100%;min-height:72px;padding:14px 26px 14px 30px;
+    font:inherit;font-size:clamp(19px,4.6vw,21px);color:var(--ink);text-align:left;
+    background:var(--card);border:1.5px solid transparent;border-radius:6px;
+    box-shadow:0 2px 6px rgba(70,61,53,.16);
+    cursor:pointer;transition:all .15s;-webkit-tap-highlight-color:transparent;
+  }
+  .radio{width:22px;height:22px;flex:none;border:1.5px solid #6E655C;border-radius:50%;display:grid;place-items:center;transition:all .15s}
+  .radio::after{content:"";width:12px;height:12px;border-radius:50%;background:var(--gold);transform:scale(0);transition:transform .15s}
+  .choice[aria-checked="true"]{border-color:var(--gold);background:#FBF7EF}
+  .choice[aria-checked="true"] .radio{border-color:var(--gold)}
+  .choice[aria-checked="true"] .radio::after{transform:scale(1)}
+  .choice:focus-visible{outline:3px solid rgba(179,151,106,.45);outline-offset:2px}
+
+  .stepper{
+    display:flex;align-items:center;justify-content:space-between;
+    background:var(--card);border-radius:6px;box-shadow:0 2px 6px rgba(70,61,53,.16);
+    padding:8px;max-width:320px;
+  }
+  .stepper button{
+    width:60px;height:60px;flex:none;font-size:30px;line-height:1;
+    border:none;border-radius:4px;background:var(--field);color:var(--gold-deep);
+    cursor:pointer;-webkit-tap-highlight-color:transparent;
+  }
+  .stepper button:active{background:#E4DCCD}
+  .stepper button:disabled{opacity:.35;cursor:default}
+  .stepper output{font-family:var(--en);font-size:32px;font-weight:600}
+  .stepper .unit{font-size:17px;color:var(--muted);margin-left:4px}
+
+  .hidden{display:none !important}
+  .err{display:none;color:var(--error);font-size:16px;margin-top:10px}
+  .field.invalid .err{display:block}
+  .field.invalid .line-input{border-bottom-color:var(--error)}
+  .field.invalid textarea{border-color:rgba(168,67,47,.55)}
+  .field.invalid .choice{border-color:rgba(168,67,47,.55)}
+
+  .submit{
+    display:block;width:100%;min-height:76px;margin-top:10px;
+    font-family:var(--cg);font-size:30px;letter-spacing:.04em;color:#fff;
+    background:var(--gold);border:none;border-radius:999px;
+    box-shadow:0 4px 10px rgba(70,61,53,.25);cursor:pointer;
+  }
+  .submit:active{background:#A6895B}
+  .submit:disabled{opacity:.6;cursor:default}
+  .submit .zh{font-family:var(--zh);font-size:17px;margin-left:10px;letter-spacing:.1em}
+  .note{text-align:center;font-size:15px;color:var(--muted);margin-top:16px}
+
+  .thanks{text-align:center;padding:40px 0 20px}
+  .thanks h2{font-family:var(--pf);font-weight:500;font-size:clamp(42px,11vw,54px);line-height:1.15}
+  .star{display:block;margin:22px auto 14px;width:12px;height:12px;color:var(--gold)}
+  .thanks .star{margin:18px auto}
+  .thanks p{font-size:clamp(17px,4.6vw,20px);line-height:1.9;letter-spacing:.08em}
+
+  .preview-badge{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9;background:rgba(63,54,46,.9);color:#fff;font-size:13px;padding:6px 14px;border-radius:999px;white-space:nowrap}
 </style>
 </head>
 <body>
-  <div>
+<div class="wrap">
+
+  <header class="hero wm">
+    <h1 class="names"><span id="groom"></span><span class="amp">&amp;</span><span id="bride"></span></h1>
     <div class="eyebrow">The Wedding of</div>
-    <h1>奇偉 &amp; 晉瑋</h1>
-    <p>正在前往出席回覆表單…</p>
-    <a id="go" href="#">前往填寫</a>
-  </div>
+  </header>
+
+  <img class="photo" src="photo.jpg" alt="婚紗照">
+
+  <section class="forever">
+    <div>
+      <h2>Forever<span>starts now</span></h2>
+      <div class="rule"></div>
+      <p>從這一刻起，<br>走向屬於我們的<br>幸福篇章。</p>
+    </div>
+    <img src="ring.jpg" alt="交換戒指">
+  </section>
+
+  <section class="details">
+    <div class="kicker">Save the Date</div>
+
+    <div class="date-big" id="dateBig"></div>
+    <div class="weekday" id="weekday"></div>
+
+    <div class="times">
+      <div><div class="lbl">迎賓</div><div class="val" id="welcome"></div></div>
+      <div class="vr"></div>
+      <div><div class="lbl">開席</div><div class="val" id="banquet"></div></div>
+    </div>
+
+    <div class="divider"><span>✦</span></div>
+
+    <div class="venue-name" id="venue"></div>
+    <div class="venue-addr" id="addr"></div>
+
+    <div class="divider"><span>✦</span></div>
+
+    <div class="parents">
+      <div><div class="role">男方家長</div><div class="ppl" id="gp"></div></div>
+      <div class="vr"></div>
+      <div><div class="role">女方家長</div><div class="ppl" id="bp"></div></div>
+    </div>
+    <div class="regards">敬邀</div>
+  </section>
+
+  <section id="formView">
+    <div class="rsvp-head">
+      <div class="rsvp-title"><h2>RSVP</h2></div>
+      <p>期待與您共享這份喜悅</p>
+      <p class="due" id="due"></p>
+    </div>
+
+    <form id="rsvp" novalidate>
+      <!-- 1 -->
+      <div class="field" data-field="name">
+        <label class="label" for="name">您的姓名<span class="req">*</span></label>
+        <div class="ctrl"><input class="line-input" type="text" id="name" autocomplete="name" placeholder="請輸入您的全名"></div>
+        <div class="err">請填寫您的姓名</div>
+      </div>
+
+      <!-- 2 -->
+      <div class="field" data-field="side">
+        <span class="label">您與新人的關係<span class="req">*</span></span>
+        <div class="ctrl choices" role="radiogroup" data-group="side">
+          <button type="button" class="choice" role="radio" aria-checked="false" data-value="男方親友">男方親友<span class="radio"></span></button>
+          <button type="button" class="choice" role="radio" aria-checked="false" data-value="女方親友">女方親友<span class="radio"></span></button>
+        </div>
+        <div class="err">請選擇一項</div>
+      </div>
+
+      <!-- 3 -->
+      <div class="field" data-field="attend">
+        <span class="label">您是否出席？<span class="req">*</span></span>
+        <div class="ctrl choices" role="radiogroup" data-group="attend">
+          <button type="button" class="choice" role="radio" aria-checked="false" data-value="會出席">是，我會出席<span class="radio"></span></button>
+          <button type="button" class="choice" role="radio" aria-checked="false" data-value="無法出席">很遺憾，無法出席<span class="radio"></span></button>
+        </div>
+        <div class="err">請選擇是否出席</div>
+      </div>
+
+      <div id="attendFields" class="hidden">
+        <!-- 4 -->
+        <div class="field" data-field="companion">
+          <span class="label">是否有家人或親友與您一同參加婚宴？<span class="req">*</span></span>
+          <div class="ctrl choices" role="radiogroup" data-group="companion">
+            <button type="button" class="choice" role="radio" aria-checked="false" data-value="有">有，會一同參加<span class="radio"></span></button>
+            <button type="button" class="choice" role="radio" aria-checked="false" data-value="沒有">沒有，僅本人出席<span class="radio"></span></button>
+          </div>
+          <div class="err">請選擇一項</div>
+        </div>
+
+        <div id="companionFields" class="hidden">
+          <!-- 5 -->
+          <div class="field">
+            <span class="label">出席總人數（含本人）<span class="req">*</span></span>
+            <p class="help">請填寫包含您本人及同行親友的總人數。</p>
+            <div class="ctrl stepper" data-stepper="guests" data-min="2" data-max="10">
+              <button type="button" data-dir="-1" aria-label="減少">−</button>
+              <div><output>2</output><span class="unit">位</span></div>
+              <button type="button" data-dir="1" aria-label="增加">＋</button>
+            </div>
+          </div>
+
+          <!-- 6 -->
+          <div class="field" data-field="companions">
+            <label class="label" for="companions">同行親友姓名<span class="req">*</span></label>
+            <p class="help">請填寫所有同行親友的姓名，無須重複填寫您本人。</p>
+            <div class="ctrl"><input class="line-input" type="text" id="companions"></div>
+            <div class="err">請填寫同行親友的姓名</div>
+          </div>
+        </div>
+
+        <!-- 7 -->
+        <div class="field">
+          <label class="label" for="diet">特殊飲食需求</label>
+          <p class="help">如有素食或飲食禁忌，請註明姓名及需求；無特殊需求可留白。</p>
+          <div class="ctrl"><textarea class="short" id="diet"></textarea></div>
+        </div>
+
+        <!-- 8 -->
+        <div class="field">
+          <span class="label">兒童餐椅需求</span>
+          <p class="help">如有需求，請填寫所需張數；無需求可留白。</p>
+          <div class="ctrl stepper" data-stepper="kids" data-min="0" data-max="5">
+            <button type="button" data-dir="-1" aria-label="減少">−</button>
+            <div><output>0</output><span class="unit">張</span></div>
+            <button type="button" data-dir="1" aria-label="增加">＋</button>
+          </div>
+        </div>
+
+        <!-- 9 -->
+        <div class="field" data-field="invite">
+          <span class="label">您希望收到哪種形式的喜帖？<span class="req">*</span></span>
+          <div class="ctrl choices" role="radiogroup" data-group="invite">
+            <button type="button" class="choice" role="radio" aria-checked="false" data-value="電子喜帖">電子喜帖<span class="radio"></span></button>
+            <button type="button" class="choice" role="radio" aria-checked="false" data-value="紙本喜帖">紙本喜帖<span class="radio"></span></button>
+          </div>
+          <div class="err">請選擇一項</div>
+        </div>
+
+        <!-- 10 -->
+        <div class="field hidden" data-field="email" id="emailField">
+          <label class="label" for="email">電子郵件信箱<span class="req">*</span></label>
+          <p class="help">請填寫收取電子喜帖的 Email</p>
+          <div class="ctrl"><input class="line-input" type="email" id="email" inputmode="email" autocomplete="email" placeholder="example@gmail.com"></div>
+          <div class="err">請填寫正確的 Email</div>
+        </div>
+
+        <!-- 11 -->
+        <div class="field hidden" data-field="address" id="addressField">
+          <label class="label" for="address">喜帖收件地址<span class="req">*</span></label>
+          <p class="help">請填寫收件人姓名及完整郵寄地址（含郵遞區號）</p>
+          <div class="ctrl"><textarea class="short" id="address"></textarea></div>
+          <div class="err">請填寫收件人姓名及地址</div>
+        </div>
+      </div>
+
+      <!-- 12 -->
+      <div class="field">
+        <label class="label" for="message">給新人的祝福</label>
+        <div class="ctrl"><textarea id="message" placeholder="寫下您的祝福與心意…"></textarea></div>
+      </div>
+
+      <button type="submit" class="submit" id="submitBtn">Submit<span class="zh">送出</span></button>
+      <p class="note" id="note">送出後如需修改，請直接與新人聯繫</p>
+    </form>
+  </section>
+
+  <section id="thanksView" class="thanks hidden" aria-live="polite">
+    <h2>Thank You!</h2>
+    <svg class="star" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 0 L7.2 4.8 L12 6 L7.2 7.2 L6 12 L4.8 7.2 L0 6 L4.8 4.8 Z" fill="currentColor"/></svg>
+    <p>謝謝您撥空填寫，<br>您的回覆我們已經收到，<br>感謝您的祝福！</p>
+  </section>
+</div>
+
 <script>
-  /* ====== 把下面引號裡的網址換成 Apps Script 的 Web app URL ====== */
-  var FORM_URL = 'https://script.google.com/macros/s/AKfycbxoAxOa5KE5VU0lUJ9ZS5uEd4R29blrs4ITkhSvZBiq2tPIUQ9Cp49RfXGOf0ZaUaHN4Q/exec';
-  /* =============================================================== */
-  document.getElementById('go').href = FORM_URL;
-  if (FORM_URL.indexOf('https://script.google.com/') === 0) location.replace(FORM_URL);
+/* ====== 在這裡修改婚禮資訊 ====== */
+var CONFIG = {
+  groom: '奇偉',
+  bride: '晉瑋',
+  date: ['2027', '03', '28'],
+  weekday: '星期日',
+  welcome: '11:30',
+  banquet: '12:00',
+  venue: '臺中勤美洲際酒店 3F 宴會廳',
+  address: '臺中市西區館前路77號',
+  groomParents: ['江俊士', '楊淑真'],
+  brideParents: ['張家福', '許華芳'],
+  deadline: ''          // 回覆期限，例如 '2027年2月28日'；留空則不顯示
+};
+
+/* ====== 把下面引號裡的網址換成 Apps Script 的 Web app URL（結尾是 /exec） ====== */
+var ENDPOINT = '貼上你的Apps Script網址';
+/* ================================================================================ */
+
+(function(){
+  var $ = function(s, r){ return (r||document).querySelector(s); };
+  var $$ = function(s, r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); };
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+  $('#groom').textContent = CONFIG.groom;
+  $('#bride').textContent = CONFIG.bride;
+  $('#dateBig').innerHTML = CONFIG.date.map(esc).join('<span class="dot">.</span>');
+  $('#weekday').textContent = CONFIG.weekday;
+  $('#welcome').textContent = CONFIG.welcome;
+  $('#banquet').textContent = CONFIG.banquet;
+  $('#venue').textContent = CONFIG.venue;
+  $('#addr').textContent = CONFIG.address;
+  $('#gp').innerHTML = CONFIG.groomParents.map(esc).join('<br>');
+  $('#bp').innerHTML = CONFIG.brideParents.map(esc).join('<br>');
+  if (CONFIG.deadline) $('#due').textContent = '敬請於 ' + CONFIG.deadline + ' 前回覆';
+
+  var state = { side:'', attend:'', companion:'', invite:'', guests:2, kids:0 };
+
+  $$('[data-group]').forEach(function(group){
+    var key = group.getAttribute('data-group');
+    $$('.choice', group).forEach(function(btn){
+      btn.addEventListener('click', function(){
+        $$('.choice', group).forEach(function(b){ b.setAttribute('aria-checked','false'); });
+        btn.setAttribute('aria-checked','true');
+        state[key] = btn.getAttribute('data-value');
+        group.closest('.field').classList.remove('invalid');
+        refresh();
+      });
+    });
+  });
+
+  $$('[data-stepper]').forEach(function(el){
+    var name = el.getAttribute('data-stepper');
+    $$('button', el).forEach(function(b){
+      b.addEventListener('click', function(){ state[name] += +b.getAttribute('data-dir'); refresh(); });
+    });
+  });
+
+  function renderStepper(name){
+    var el = $('[data-stepper="'+name+'"]');
+    var min = +el.getAttribute('data-min'), max = +el.getAttribute('data-max');
+    state[name] = Math.max(min, Math.min(max, state[name]));
+    $('output', el).textContent = state[name];
+    $('[data-dir="-1"]', el).disabled = state[name] <= min;
+    $('[data-dir="1"]', el).disabled = state[name] >= max;
+  }
+
+  function refresh(){
+    var yes = state.attend === '會出席';
+    $('#attendFields').classList.toggle('hidden', !yes);
+    $('#companionFields').classList.toggle('hidden', !(yes && state.companion === '有'));
+    $('#emailField').classList.toggle('hidden', !(yes && state.invite === '電子喜帖'));
+    $('#addressField').classList.toggle('hidden', !(yes && state.invite === '紙本喜帖'));
+    ['guests','kids'].forEach(renderStepper);
+  }
+  refresh();
+
+  $$('input, textarea').forEach(function(i){
+    i.addEventListener('input', function(){ var f = i.closest('.field'); if (f) f.classList.remove('invalid'); });
+  });
+
+  function val(id){ return $('#'+id).value.trim(); }
+
+  function validate(){
+    var bad = [], yes = state.attend === '會出席';
+    if (!val('name')) bad.push('name');
+    if (!state.side) bad.push('side');
+    if (!state.attend) bad.push('attend');
+    if (yes && !state.companion) bad.push('companion');
+    if (yes && state.companion === '有' && !val('companions')) bad.push('companions');
+    if (yes && !state.invite) bad.push('invite');
+    if (yes && state.invite === '電子喜帖' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val('email'))) bad.push('email');
+    if (yes && state.invite === '紙本喜帖' && !val('address')) bad.push('address');
+    $$('.field').forEach(function(f){ f.classList.remove('invalid'); });
+    bad.forEach(function(k){ $('[data-field="'+k+'"]').classList.add('invalid'); });
+    if (bad.length) $('[data-field="'+bad[0]+'"]').scrollIntoView({behavior:'smooth', block:'center'});
+    return !bad.length;
+  }
+
+  function payload(){
+    var yes = state.attend === '會出席', withC = yes && state.companion === '有';
+    return {
+      name: val('name'), side: state.side, attend: state.attend,
+      companion: yes ? state.companion : '',
+      guests: !yes ? 0 : (withC ? state.guests : 1),
+      companions: withC ? val('companions') : '',
+      diet: yes ? val('diet') : '',
+      kids: yes ? state.kids : 0,
+      invite: yes ? state.invite : '',
+      email: yes && state.invite === '電子喜帖' ? val('email') : '',
+      address: yes && state.invite === '紙本喜帖' ? val('address') : '',
+      message: val('message')
+    };
+  }
+
+  function showThanks(){
+    $('#formView').classList.add('hidden');
+    $('#thanksView').classList.remove('hidden');
+    $('#thanksView').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  var live = ENDPOINT.indexOf('https://script.google.com/') === 0;
+  if (!live){
+    var b = document.createElement('div');
+    b.className = 'preview-badge'; b.textContent = '預覽模式 · 不會寫入試算表';
+    document.body.appendChild(b);
+  }
+
+  function fail(btn){
+    btn.disabled = false; btn.innerHTML = 'Submit<span class="zh">送出</span>';
+    $('#note').innerHTML = '<span style="color:var(--error)">網路不穩，送出失敗，請再按一次</span>';
+  }
+
+  $('#rsvp').addEventListener('submit', function(e){
+    e.preventDefault();
+    if (!validate()) return;
+    var btn = $('#submitBtn'); btn.disabled = true; btn.innerHTML = 'Sending…<span class="zh">送出中</span>';
+    var d = payload();
+    if (!live){ setTimeout(showThanks, 600); return; }
+    fetch(ENDPOINT, { method: 'POST', body: JSON.stringify(d) })
+      .then(function(r){ return r.json(); })
+      .then(function(res){ if (res && res.ok) showThanks(); else fail(btn); })
+      .catch(function(){ fail(btn); });
+  });
+})();
 </script>
 </body>
 </html>
