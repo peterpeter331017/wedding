@@ -10,7 +10,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="奇偉 &amp; 晉瑋 婚禮出席回覆">
 <meta property="og:description" content="2027.03.28 臺中勤美洲際酒店｜誠摯邀請您蒞臨，敬請點擊連結回覆出席意願">
-<meta property="og:image" content="https://peterpeter331017.github.io/wedding/preview.jpg?v=8">
+<meta property="og:image" content="https://你的帳號.github.io/wedding/preview.jpg?v=3">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 
@@ -149,6 +149,8 @@
   textarea:focus{outline:none;border-color:var(--gold)}
 
   .choices{display:grid;gap:12px}
+  .choices.two{grid-template-columns:1fr 1fr}
+  .choices.two .choice{min-height:64px;padding:12px 16px 12px 20px}
   .choice{
     display:flex;align-items:center;justify-content:space-between;gap:12px;
     width:100%;min-height:72px;padding:14px 26px 14px 30px;
@@ -277,6 +279,20 @@
         <div class="err">請選擇一項</div>
       </div>
 
+      <!-- 2-1 -->
+      <div class="field hidden" data-field="relation" id="relationField">
+        <span class="label">請選擇您與<span id="sideName">男方</span>的關係<span class="req">*</span></span>
+        <div class="ctrl choices two" role="radiogroup" data-group="relation">
+          <button type="button" class="choice" role="radio" aria-checked="false" data-value="親戚">親戚<span class="radio"></span></button>
+          <button type="button" class="choice" role="radio" aria-checked="false" data-value="爸爸的朋友">爸爸的朋友<span class="radio"></span></button>
+          <button type="button" class="choice" role="radio" aria-checked="false" data-value="媽媽的朋友">媽媽的朋友<span class="radio"></span></button>
+          <button type="button" class="choice" role="radio" aria-checked="false" data-value="同學">同學<span class="radio"></span></button>
+          <button type="button" class="choice" role="radio" aria-checked="false" data-value="同事">同事<span class="radio"></span></button>
+          <button type="button" class="choice" role="radio" aria-checked="false" data-value="朋友">朋友<span class="radio"></span></button>
+        </div>
+        <div class="err">請選擇一項</div>
+      </div>
+
       <!-- 3 -->
       <div class="field" data-field="attend">
         <span class="label">您是否出席？<span class="req">*</span></span>
@@ -399,7 +415,7 @@ var CONFIG = {
 };
 
 /* ====== 把下面引號裡的網址換成 Apps Script 的 Web app URL（結尾是 /exec） ====== */
-var ENDPOINT = 'https://script.google.com/macros/s/AKfycbxoAxOa5KE5VU0lUJ9ZS5uEd4R29blrs4ITkhSvZBiq2tPIUQ9Cp49RfXGOf0ZaUaHN4Q/exec';
+var ENDPOINT = '貼上你的Apps Script網址';
 /* ================================================================================ */
 
 (function(){
@@ -419,7 +435,7 @@ var ENDPOINT = 'https://script.google.com/macros/s/AKfycbxoAxOa5KE5VU0lUJ9ZS5uEd
   $('#bp').innerHTML = CONFIG.brideParents.map(esc).join('<br>');
   if (CONFIG.deadline) $('#due').textContent = '敬請於 ' + CONFIG.deadline + ' 前回覆';
 
-  var state = { side:'', attend:'', companion:'', invite:'', guests:2, kids:0 };
+  var state = { side:'', relation:'', attend:'', companion:'', invite:'', guests:2, kids:0 };
 
   $$('[data-group]').forEach(function(group){
     var key = group.getAttribute('data-group');
@@ -428,6 +444,10 @@ var ENDPOINT = 'https://script.google.com/macros/s/AKfycbxoAxOa5KE5VU0lUJ9ZS5uEd
         $$('.choice', group).forEach(function(b){ b.setAttribute('aria-checked','false'); });
         btn.setAttribute('aria-checked','true');
         state[key] = btn.getAttribute('data-value');
+        if (key === 'side'){
+          state.relation = '';
+          $$('[data-group="relation"] .choice').forEach(function(b){ b.setAttribute('aria-checked','false'); });
+        }
         group.closest('.field').classList.remove('invalid');
         refresh();
       });
@@ -452,6 +472,8 @@ var ENDPOINT = 'https://script.google.com/macros/s/AKfycbxoAxOa5KE5VU0lUJ9ZS5uEd
 
   function refresh(){
     var yes = state.attend === '會出席';
+    $('#relationField').classList.toggle('hidden', !state.side);
+    $('#sideName').textContent = state.side.slice(0, 2) || '男方';
     $('#attendFields').classList.toggle('hidden', !yes);
     $('#companionFields').classList.toggle('hidden', !(yes && state.companion === '有'));
     $('#emailField').classList.toggle('hidden', !(yes && state.invite === '電子喜帖'));
@@ -470,6 +492,7 @@ var ENDPOINT = 'https://script.google.com/macros/s/AKfycbxoAxOa5KE5VU0lUJ9ZS5uEd
     var bad = [], yes = state.attend === '會出席';
     if (!val('name')) bad.push('name');
     if (!state.side) bad.push('side');
+    if (state.side && !state.relation) bad.push('relation');
     if (!state.attend) bad.push('attend');
     if (yes && !state.companion) bad.push('companion');
     if (yes && state.companion === '有' && !val('companions')) bad.push('companions');
@@ -485,7 +508,7 @@ var ENDPOINT = 'https://script.google.com/macros/s/AKfycbxoAxOa5KE5VU0lUJ9ZS5uEd
   function payload(){
     var yes = state.attend === '會出席', withC = yes && state.companion === '有';
     return {
-      name: val('name'), side: state.side, attend: state.attend,
+      name: val('name'), side: state.side, relation: state.relation, attend: state.attend,
       companion: yes ? state.companion : '',
       guests: !yes ? 0 : (withC ? state.guests : 1),
       companions: withC ? val('companions') : '',
